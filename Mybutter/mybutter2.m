@@ -1,0 +1,34 @@
+Ts=0.002;
+f1=100;
+M=1000;
+n=1:1:M;
+x=cos(2*pi*Ts*(n-1))+2*cos(2*pi*f1*Ts*(n-1));
+subplot(3,1,1);
+plot(n,x);
+title('Part II-a');
+xlabel( 'n' );
+ylabel( 'x[n]' );
+grid on;
+
+fc_1=0.3;
+[b_1,a_1]=butter(16,fc_1,'low');
+[h_1,w_1]=freqz(b_1,a_1);
+y_1=filter(b_1,a_1,x);
+subplot(3,1,2);
+plot(n,y_1);
+title('Part II-b');
+xlabel( 'n' );
+ylabel( 'y[n]' );
+grid on;
+
+fc_2_1=0.3;
+fc_2_2=0.725;
+[b_2,a_2]=butter(8,[fc_2_1,fc_2_2],'bandpass');
+[h_2,w_2]=freqz(b_2,a_2);
+y_2=filter(b_2,a_2,x);
+subplot(3,1,3);
+plot(n,y_2);
+title('Part II-c');
+xlabel( 'n' );
+ylabel( 'y[n]' );
+grid on;
